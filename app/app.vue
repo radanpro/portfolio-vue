@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen">
-    <AppNav />
+    <CustomCursor /> <AppNav />
     <main class="pt-32 px-8">
       <h2
         class="text-[12vw] font-display font-black leading-none uppercase text-white spacity-10 select-none"
