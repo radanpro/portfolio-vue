@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #ff2a6d;
+  --color-accent-2: #05d9e8;
+  --font-display: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --bg-color: #050505;
+  --text-color: #e0e0e0;
+  --accent: #ff2a6d;
+  --accent-2: #05d9e8;
+  --font-dispaly: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.hero-title {
+  @apply font-display text-accent-2;
+}
