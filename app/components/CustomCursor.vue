@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import gsap from "gsap"
+import { ref, onMounted, onUnmounted } from "vue"
 
 const cursorRef = ref(null)
 const followerRef = ref(null)
@@ -8,7 +9,9 @@ const onMouseMove = (e: MouseEvent) => {
   gsap.to(cursorRef.value, {
     x: e.clientX,
     y: e.clientY,
-    duration: 0,
+    duration: 0.1,
+    scale: 2,
+    onComplete: () => gsap.to(cursorRef.value, { scale: 1, duration: 0.2 }),
   })
 
   gsap.to(followerRef.value, {
@@ -16,6 +19,16 @@ const onMouseMove = (e: MouseEvent) => {
     y: e.clientY,
     duration: 0.5,
     ease: "power2.out",
+    scale: 1.5,
+    opacity: 1,
+    onComplete: () => {
+      gsap.to(followerRef.value, {
+        scale: 1,
+        opacity: 0.75,
+        duration: 0.4,
+        ease: "power2.out",
+      })
+    },
   })
 }
 
