@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useScrollAnimations()
+
 const projects = [
   {
     title: "Nexus UI Kit",
@@ -28,37 +30,88 @@ const projects = [
 </script>
 <template>
   <div class="container mx-auto px-8 pb-32">
-    <section class="min-h-screen flex flex-col justify-center py-20">
-      <div class="overflow-hidden">
+    <section
+      class="min-h-screen flex flex-col justify-center items-center text-center relative"
+    >
+      <div
+        class="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none"
+      >
         <h2
-          class="text-[14vw] font-display font-black leading-none uppercase text-white/5 -mb-8 select-none tracking-tighter"
+          class="text-[15vw] font-display font-black uppercase text-white/10 leading-none select-none"
         >
-          Architect
+          Radan
         </h2>
       </div>
-      <div class="max-w-4xl">
-        <h1
-          class="text-6xl md:text-8xl font-display font-bold uppercase leading-[0.9] tracking-tighter"
+
+      <h1
+        class="hero-title text-[10vw] md:text-[8vw] font-display font-black leading-[0.85] uppercase tracking-tighter"
+      >
+        <div class="block overflow-hidden">
+          <span class="char-reveal inline-block">D</span>
+          <span class="char-reveal inline-block">I</span>
+          <span class="char-reveal inline-block">G</span>
+          <span class="char-reveal inline-block">I</span>
+          <span class="char-reveal inline-block">T</span>
+          <span class="char-reveal inline-block">A</span>
+          <span class="char-reveal inline-block">L</span>
+        </div>
+        <div class="block overflow-hidden text-accent-2">
+          <span class="char-reveal inline-block">A</span>
+          <span class="char-reveal inline-block">R</span>
+          <span class="char-reveal inline-block">C</span>
+          <span class="char-reveal inline-block">H</span>
+          <span class="char-reveal inline-block">I</span>
+          <span class="char-reveal inline-block">T</span>
+          <span class="char-reveal inline-block">E</span>
+          <span class="char-reveal inline-block">C</span>
+          <span class="char-reveal inline-block">T</span>
+        </div>
+      </h1>
+
+      <div class="reveal mt-12 max-w-2xl">
+        <div
+          class="inline-block px-6 py-2 border-y border-accent-2/30 text-accent-2 tracking-[0.4em] uppercase font-bold text-xs mb-6"
         >
-          Crafting <span class="text-accent-2">Digital</span> <br />
-          Masterpieces <span class="text-accent">.</span>
-        </h1>
-        <p
-          class="mt-8 text-gray-400 font-body max-w-xl text-lg leading-relaxed"
-        >
+          Design. Code. Motion.
+        </div>
+        <p class="text-gray-400 font-body text-lg md:text-xl leading-relaxed">
           Full Stack Developer & DevOps Engineer specializing in high-end
           interactive web experiences.
         </p>
       </div>
     </section>
 
-    <section id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-20">
+    <AppMarquee />
+
+    <section id="work" class="py-32">
       <div
-        v-for="(project, i) in projects"
-        :key="i"
-        :class="i % 2 !== 0 ? 'md:mt-32' : ''"
+        class="reveal flex justify-between items-end mb-20 border-b border-white/10 pb-8"
       >
-        <ProjectCard v-bind="project" />
+        <div>
+          <h2
+            class="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter"
+          >
+            Selected Works
+          </h2>
+          <p class="text-accent-2 mt-2 uppercase tracking-widest text-sm">
+            Case Studies / 2024-2026
+          </p>
+        </div>
+        <div
+          class="hidden md:block text-right font-display text-white/20 text-xl italic"
+        >
+          Scroll to Explore
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+        <div
+          v-for="(project, i) in projects"
+          :key="i"
+          :class="['reveal', i % 2 !== 0 ? 'md:mt-40' : '']"
+        >
+          <ProjectCard v-bind="project" />
+        </div>
       </div>
     </section>
   </div>
