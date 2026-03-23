@@ -18,13 +18,13 @@ const onMouseMove = (e: MouseEvent) => {
   const y = e.clientY - rect.top
 
   // Calculate rotation based on mouse position
-  const rotateX = ((y - rect.height / 2) / rect.height) * -15
-  const rotateY = ((x - rect.width / 2) / rect.width) * 15
+  const rotateX = ((y - rect.height / 2) / rect.height) * -40
+  const rotateY = ((x - rect.width / 2) / rect.width) * 40
 
   gsap.to(cardRef.value, {
     rotateX,
     rotateY,
-    scale: 1.02,
+    scale: 1.1,
     duration: 0.5,
     ease: "power2.out",
     perspective: 1000,
