@@ -27,6 +27,11 @@ const projects = [
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000",
   },
 ]
+
+const titleArr = [
+  ["D", "I", "G", "I", "T", "A", "L"],
+  ["A", "R", "C", "H", "I", "T", "E", "C", "T"],
+]
 </script>
 <template>
   <div class="container mx-auto px-8 pb-32">
@@ -44,27 +49,21 @@ const projects = [
       </div>
 
       <h1
-        class="hero-title text-[10vw] md:text-[8vw] font-display font-black leading-[0.85] uppercase tracking-tighter"
+        class="hero-title text-[10vw] md:text-[8vw] font-display font-black leading-[0.95] uppercase tracking-tighter"
       >
-        <div class="block overflow-hidden">
-          <span class="char-reveal inline-block">D</span>
-          <span class="char-reveal inline-block">I</span>
-          <span class="char-reveal inline-block">G</span>
-          <span class="char-reveal inline-block">I</span>
-          <span class="char-reveal inline-block">T</span>
-          <span class="char-reveal inline-block">A</span>
-          <span class="char-reveal inline-block">L</span>
-        </div>
-        <div class="block overflow-hidden text-accent-2">
-          <span class="char-reveal inline-block">A</span>
-          <span class="char-reveal inline-block">R</span>
-          <span class="char-reveal inline-block">C</span>
-          <span class="char-reveal inline-block">H</span>
-          <span class="char-reveal inline-block">I</span>
-          <span class="char-reveal inline-block">T</span>
-          <span class="char-reveal inline-block">E</span>
-          <span class="char-reveal inline-block">C</span>
-          <span class="char-reveal inline-block">T</span>
+        <div
+          v-for="(word, wordIndex) in titleArr"
+          :key="wordIndex"
+          class="block overflow-hidden"
+          :class="{ 'text-accent-2': wordIndex === 1 }"
+        >
+          <span
+            v-for="(char, charIndex) in word"
+            :key="charIndex"
+            class="char-reveal inline-block"
+          >
+            {{ char }}
+          </span>
         </div>
       </h1>
 
