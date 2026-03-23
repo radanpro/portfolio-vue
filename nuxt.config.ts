@@ -4,14 +4,12 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
   css: ["@/assets/css/main.css"],
-  build: {
-    transpile: ["three"],
-  },
+
   vite: {
     plugins: [tailwindcss()],
     devBundler: "vite-node",
     optimizeDeps: {
-      include: ["three", "gsap"],
+      exclude: ["isbot"],
     },
     server: {
       hmr: {
@@ -38,4 +36,9 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  nitro: {
+    devProxy: {
+      host: "localhost",
+    },
+  },
 })

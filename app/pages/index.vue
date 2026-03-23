@@ -2,7 +2,7 @@
   <div>
     <main class="pt-32 px-8">
       <h2
-        class="text-[12vw] font-display font-black leading-none uppercase opacity-10 select-none"
+        class="text-[10vw] font-display font-black leading-none uppercase opacity-10 select-none"
       >
         Architect
       </h2>
