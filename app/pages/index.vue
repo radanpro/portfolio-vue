@@ -82,6 +82,8 @@ const titleArr = [
 
     <AppMarquee />
 
+    <AboutSection />
+
     <section id="work" class="py-32">
       <div
         class="reveal flex justify-between items-end mb-20 border-b border-white/10 pb-8"

@@ -55,5 +55,17 @@ export const useScrollAnimations = () => {
       ease: "back.out(1.7)",
       delay: 0.5,
     })
+
+    gsap.to(".reveal-text", {
+      scrollTrigger: {
+        trigger: ".reveal-text",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+        scrub: true,
+      },
+      color: "#ffffff",
+      stagger: 0.1,
+    })
   })
 }
