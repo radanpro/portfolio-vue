@@ -69,10 +69,14 @@ const onMouseLeave = () => {
     <div
       class="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent p-8 flex flex-col justify-end"
     >
-      <p class="text-accent-2 font-body text-xs tracking-widest uppercase mb-2">
+      <p
+        class="text-accent-2 text-xs tracking-widest uppercase mb-2 font-drizy"
+      >
         {{ category }}
       </p>
-      <h3 class="font-display text-3xl font-bold uppercase tracking-tighter">
+      <h3
+        class="font-black-sansa text-3xl font-bold uppercase tracking-tighter"
+      >
         {{ title }}
       </h3>
     </div>
