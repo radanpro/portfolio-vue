@@ -1,10 +1,55 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Unique";
+  src: url("~/assets/fonts/Unique-VF.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url("~/assets/fonts/Mamenchisa.otf") format("opentype");
+  font-family: "drizy";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url("~/assets/fonts/Mango Grotesque-VF.ttf")
+    format("truetype-variations");
+  font-family: "mango-grotesque";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  src: url("~/assets/fonts/BlackSansaFree-Regular.otf") format("opentype");
+  font-family: "black-sansa";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src: url("~/assets/fonts/tropikal-bold.otf") format("opentype");
+  font-family: "tropikal";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-accent: #ff2a6d;
   --color-accent-2: #05d9e8;
   --font-display: "Syne", sans-serif;
   --font-body: "Inter", sans-serif;
+  --font-heading: "Unique", sans-serif;
+  --font-drizy: "drizy", sans-serif;
+  --font-mango-grotesque: "mango-grotesque", sans-serif;
+  --font-black-sansa: "black-sansa", sans-serif;
+  --font-tropikal: "tropikal", sans-serif;
 }
 
 :root {
@@ -25,5 +70,5 @@ body {
 }
 
 .hero-title {
-  @apply font-display text-accent-2;
+  @apply font-drizy  font-bold leading-tight;
 }
