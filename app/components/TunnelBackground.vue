@@ -11,6 +11,30 @@ let animationId: number
 
 const mouse = new THREE.Vector2(-999, -999)
 
+// وظيفة لإنشاء نسيج دائري ناعم للنقاط
+const createCircleTexture = () => {
+  const canvas = document.createElement("canvas")
+  canvas.width = 128 // حجم النسيج
+  canvas.height = 128
+  const ctx = canvas.getContext("2d")
+
+  if (!ctx) return null
+
+  ctx.beginPath()
+  ctx.arc(64, 64, 60, 0, Math.PI * 2) // رسم دائرة
+  ctx.fillStyle = "white" // لون الدائرة الأساسي
+  ctx.fill()
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "white"
+  ctx.stroke()
+
+  // تأثير توهج خفيف على الحواف
+  ctx.shadowColor = "white"
+  ctx.shadowBlur = 10
+
+  return new THREE.CanvasTexture(canvas)
+}
+
 onMounted(() => {
   if (!container.value) return
 
@@ -53,14 +77,16 @@ onMounted(() => {
       initialAngles[idx] = angle
       initialRadii[idx] = radius
 
-      const x = Math.cos(angle) * radius
-      const y = Math.sin(angle) * radius
+      positions[idx * 3] = Math.cos(angle) * radius
+      positions[idx * 3 + 1] = Math.sin(angle) * radius
+      positions[idx * 3 + 2] = z
 
-      positions[idx * 3] = currentPositions[idx * 3] = x
-      positions[idx * 3 + 1] = currentPositions[idx * 3 + 1] = y
-      positions[idx * 3 + 2] = currentPositions[idx * 3 + 2] = z
+      // تعيين المواقع الحالية لتكون نفس المواقع الأصلية في البداية
+      currentPositions[idx * 3] = positions[idx * 3]
+      currentPositions[idx * 3 + 1] = positions[idx * 3 + 1]
+      currentPositions[idx * 3 + 2] = positions[idx * 3 + 2]
 
-      const brightness = Math.pow(1 - fraction, 1.5)
+      const brightness = Math.pow(1 - fraction, 1.8) // تلاشي أنعم في العمق
       colors[idx * 3] = colors[idx * 3 + 1] = colors[idx * 3 + 2] = brightness
     }
   }
@@ -72,12 +98,16 @@ onMounted(() => {
   )
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3))
 
+  // استخدام PointsMaterial مع النسيج الدائري
+  const circleTexture = createCircleTexture()
   const material = new THREE.PointsMaterial({
-    size: 0.15,
+    size: 0.25, // تكبير حجم الدوائر قليلاً
     vertexColors: true,
+    map: circleTexture, // تطبيق النسيج الدائري
     transparent: true,
-    opacity: 0.9,
-    sizeAttenuation: true,
+    opacity: 1, // سطوع كامل مع الاعتماد على vertexColors للتلاشي
+    sizeAttenuation: true, // الحفاظ على الحجم النسبي في العمق
+    alphaTest: 0.1, // لمنع ظهور حواف مربعة شفافة
   })
 
   particles = new THREE.Points(geometry, material)
@@ -100,15 +130,15 @@ onMounted(() => {
 
       // 1. حساب الموضع الدوراني "المستهدف" (الذي يجب أن تكون فيه النقطة)
       const currentAngle = initialAngles[i] + time * 0.2
-      const pulse = Math.sin(time * 2 + initialAngles[i] * 3) * 0.03
-      const radius = initialRadii[i] + pulse
+      const radius =
+        initialRadii[i] + Math.sin(time * 2 + initialAngles[i] * 3) * 0.03 // نبض خفيف
 
       const targetX = Math.cos(currentAngle) * radius
       const targetY = Math.sin(currentAngle) * radius
       const targetZ = positions[iz]
 
       // 2. حساب التنافر
-      // نستخدم worldPoint لحساب المسافة عن الماوس
+      // نستخدم worldPoint لحساب المسافة عن الماوس في فضاء المشهد
       const worldPoint = new THREE.Vector3(
         targetX + particles.position.x,
         targetY + particles.position.y,
@@ -167,6 +197,8 @@ onMounted(() => {
 onUnmounted(() => {
   cancelAnimationFrame(animationId)
   renderer?.dispose()
+  window.removeEventListener("mousemove", () => {}) // تنظيف الأحداث
+  window.removeEventListener("resize", () => {})
 })
 </script>
 
