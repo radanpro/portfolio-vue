@@ -15,8 +15,6 @@ onMounted(() => {
   if (!container.value) return
 
   scene = new THREE.Scene()
-
-  // 1. إعداد الكاميرا لزاوية رؤية أفضل للمخروط على اليمين
   camera = new THREE.PerspectiveCamera(
     45,
     container.value.offsetWidth / container.value.offsetHeight,
@@ -31,42 +29,47 @@ onMounted(() => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   container.value.appendChild(renderer.domElement)
 
-  // 2. بناء الأسطوانة المخروطية المنتظمة
-  const rings = 60
+  const rings = 70
   const ptsPerRing = 50
   const count = rings * ptsPerRing
 
   const positions = new Float32Array(count * 3)
-  const originalPositions = new Float32Array(count * 3)
+  const initialAngles = new Float32Array(count)
+  const initialRadii = new Float32Array(count)
   const colors = new Float32Array(count * 3)
+
+  // مصفوفة إضافية لتخزين المواقع الحالية للنقاط من أجل "النعومة"
+  const currentPositions = new Float32Array(count * 3)
 
   for (let i = 0; i < rings; i++) {
     const fraction = i / rings
-    const radius = 3.2 - fraction * 2.2 // فتحة مخروطية متزنة
+    const radius = 3.2 - fraction * 2.2
     const z = -fraction * 15
 
     for (let j = 0; j < ptsPerRing; j++) {
-      const idx = (i * ptsPerRing + j) * 3
-      const angle = (j / ptsPerRing) * Math.PI * 2 + i * 0.05 // إمالة خفيفة جداً
+      const idx = i * ptsPerRing + j
+      const angle = (j / ptsPerRing) * Math.PI * 2 + i * 0.05
 
-      positions[idx] = Math.cos(angle) * radius
-      positions[idx + 1] = Math.sin(angle) * radius
-      positions[idx + 2] = z
+      initialAngles[idx] = angle
+      initialRadii[idx] = radius
 
-      originalPositions[idx] = positions[idx]
-      originalPositions[idx + 1] = positions[idx + 1]
-      originalPositions[idx + 2] = positions[idx + 2]
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
 
-      // التلاشي في العمق
-      const brightness = Math.pow(1 - fraction, 1.5) // تلاشي أنعم
-      colors[idx] = brightness
-      colors[idx + 1] = brightness
-      colors[idx + 2] = brightness
+      positions[idx * 3] = currentPositions[idx * 3] = x
+      positions[idx * 3 + 1] = currentPositions[idx * 3 + 1] = y
+      positions[idx * 3 + 2] = currentPositions[idx * 3 + 2] = z
+
+      const brightness = Math.pow(1 - fraction, 1.5)
+      colors[idx * 3] = colors[idx * 3 + 1] = colors[idx * 3 + 2] = brightness
     }
   }
 
   const geometry = new THREE.BufferGeometry()
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3))
+  geometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(currentPositions, 3),
+  )
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3))
 
   const material = new THREE.PointsMaterial({
@@ -78,24 +81,15 @@ onMounted(() => {
   })
 
   particles = new THREE.Points(geometry, material)
-  particles.position.set(8, 0, 2) // الموضع في اليمين
+  particles.position.set(8, 0, 2)
   scene.add(particles)
 
-  const onMouseMove = (event: MouseEvent) => {
-    const rect = container.value?.getBoundingClientRect()
-    if (rect) {
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-    }
-  }
-  window.addEventListener("mousemove", onMouseMove)
-
-  // 4. منطق التفاعل "لكل نقطة" (Per-Point Interaction)
   const raycaster = new THREE.Raycaster()
-  const animate = () => {
-    const posAttr = particles.geometry.attributes.position
+  let time = 0
 
-    // تحديث الشعاع بناءً على موقع الماوس
+  const animate = () => {
+    time += 0.005
+    const posAttr = particles.geometry.attributes.position
     raycaster.setFromCamera(mouse, camera)
     const ray = raycaster.ray
 
@@ -104,56 +98,75 @@ onMounted(() => {
         iy = i * 3 + 1,
         iz = i * 3 + 2
 
-      // 1. تحويل موقع النقطة إلى "World Space"
-      const pX = originalPositions[ix] + particles.position.x
-      const pY = originalPositions[iy] + particles.position.y
-      const pZ = originalPositions[iz] + particles.position.z
-      const pointV = new THREE.Vector3(pX, pY, pZ)
+      // 1. حساب الموضع الدوراني "المستهدف" (الذي يجب أن تكون فيه النقطة)
+      const currentAngle = initialAngles[i] + time * 0.2
+      const pulse = Math.sin(time * 2 + initialAngles[i] * 3) * 0.03
+      const radius = initialRadii[i] + pulse
 
-      // 2. حساب أقرب مسافة بين النقطة وشعاع الماوس (3D Distance)
-      const distanceToRay = ray.distanceToPoint(pointV)
+      const targetX = Math.cos(currentAngle) * radius
+      const targetY = Math.sin(currentAngle) * radius
+      const targetZ = positions[iz]
 
-      if (distanceToRay < 1.2) {
-        // منطقة التأثير
-        const force = (1.2 - distanceToRay) / 1.2
+      // 2. حساب التنافر
+      // نستخدم worldPoint لحساب المسافة عن الماوس
+      const worldPoint = new THREE.Vector3(
+        targetX + particles.position.x,
+        targetY + particles.position.y,
+        targetZ + particles.position.z,
+      )
 
-        // حساب اتجاه التنافر من الشعاع إلى النقطة
+      const distanceToRay = ray.distanceToPoint(worldPoint)
+
+      let offsetX = 0
+      let offsetY = 0
+
+      if (distanceToRay < 1.5) {
+        const force = (1.5 - distanceToRay) / 1.5
         const projection = new THREE.Vector3()
-        ray.closestPointToPoint(pointV, projection)
-        const repulsionDir = pointV.clone().sub(projection).normalize()
+        ray.closestPointToPoint(worldPoint, projection)
+        const repulsionDir = worldPoint.clone().sub(projection).normalize()
 
-        // تطبيق الحركة
-        posAttr.array[ix] += repulsionDir.x * force * 0.04
-        posAttr.array[iy] += repulsionDir.y * force * 0.04
-      } else {
-        // العودة للمكان الأصلي بسلاسة
-        posAttr.array[ix] += (originalPositions[ix] - posAttr.array[ix]) * 0.1
-        posAttr.array[iy] += (originalPositions[iy] - posAttr.array[iy]) * 0.1
+        // قوة التنافر المضافة للموقع المستهدف
+        offsetX = repulsionDir.x * force * 1.2
+        offsetY = repulsionDir.y * force * 1.2
       }
+
+      // 3. السر في الحركة الناعمة (Easing):
+      // بدلاً من وضع النقطة مباشرة، نجعلها تقترب من (الموقع المستهدف + التنافر) بنسبة 10% كل إطار
+      const finalTargetX = targetX + offsetX
+      const finalTargetY = targetY + offsetY
+
+      posAttr.array[ix] += (finalTargetX - posAttr.array[ix]) * 0.1
+      posAttr.array[iy] += (finalTargetY - posAttr.array[iy]) * 0.1
+      posAttr.array[iz] = targetZ // العمق ثابت
     }
 
     posAttr.needsUpdate = true
-    particles.rotation.z += 0.0005
-
     renderer.render(scene, camera)
     animationId = requestAnimationFrame(animate)
   }
   animate()
 
-  const handleResize = () => {
+  // تتبع الماوس و Resize (نفس الكود السابق)
+  const onMouseMove = (e: MouseEvent) => {
+    const rect = container.value?.getBoundingClientRect()
+    if (rect) {
+      mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1
+      mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
+    }
+  }
+  window.addEventListener("mousemove", onMouseMove)
+  window.addEventListener("resize", () => {
     if (!container.value) return
     camera.aspect = container.value.offsetWidth / container.value.offsetHeight
     camera.updateProjectionMatrix()
     renderer.setSize(container.value.offsetWidth, container.value.offsetHeight)
-  }
-  window.addEventListener("resize", handleResize)
+  })
 })
 
 onUnmounted(() => {
   cancelAnimationFrame(animationId)
   renderer?.dispose()
-  window.removeEventListener("mousemove", () => {})
-  window.removeEventListener("resize", () => {})
 })
 </script>
 
