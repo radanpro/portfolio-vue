@@ -119,5 +119,7 @@ const titleArr = [
         </div>
       </div>
     </section>
+
+    <AppFooter />
   </div>
 </template>
