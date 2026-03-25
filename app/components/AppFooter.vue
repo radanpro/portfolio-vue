@@ -48,7 +48,7 @@ const links = [
 
 <template>
   <footer
-    class="main-footer pt-20 md:pt-40 pb-10 relative overflow-hidden bg-black text-white"
+    class="main-footer pt-20 md:pt-40 pb-10 relative overflow-hidden text-white"
   >
     <div class="container mx-auto px-6 md:px-8">
       <div class="text-center mb-20 md:mb-40 pointer-events-none select-none">
