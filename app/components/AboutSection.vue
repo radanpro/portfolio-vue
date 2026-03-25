@@ -25,67 +25,60 @@ onMounted(() => {
 </script>
 <template>
   <section
-    class="py-40 bg-transparent relative overflow-hidden section-about z-0"
+    class="py-24 md:py-40 bg-transparent relative overflow-hidden section-about"
   >
-    <TunnelBackground class="pointer-events-none" />
+    <TunnelBackground />
 
-    <div class="container mx-auto px-8 relative z-20">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-4">
-          <div class="reveal stricky top-32">
+    <div class="container mx-auto px-6 md:px-12 relative z-20">
+      <div class="flex flex-col lg:grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-12">
+          <div class="sticky top-24">
             <span
-              class="text-accent-2 font-display uppercase tracking-[0.3em] font-bold text-xl"
-              >Philosophy</span
+              class="text-accent-2 font-display uppercase tracking-[0.3em] font-bold text-sm md:text-xl"
             >
-            <h3 class="text-3xl font-tropikal font-bold mt-4 leading-tight">
-              Merging Aesthetics <br />
+              Philosophy
+            </span>
+            <h3
+              class="text-3xl md:text-4xl font-tropikal font-bold mt-4 leading-tight text-white"
+            >
+              Merging Aesthetics <br class="hidden md:block" />
               With Performance
             </h3>
           </div>
         </div>
 
-        <div class="lg:col-span-8 w-2/3">
+        <div class="lg:col-span-8 w-full lg:w-11/12">
           <p
-            class="font-drizy text-4xl md:text-6xl font-bold uppercase leading-[1.1] tracking-tighter text-white/20 flex flex-wrap"
+            class="font-drizy text-3xl md:text-5xl lg:text-6xl font-bold uppercase leading-[1.2] tracking-tighter text-white/20 flex flex-wrap"
           >
             <span
               v-for="(word, i) in words"
               :key="i"
-              class="reveal-text about-word mr-4 mb-2 transition-colors duration-500 hover:text-accent"
+              class="reveal-text about-word mr-3 mb-2 transition-colors duration-500 hover:text-accent"
             >
               {{ word }}
             </span>
           </p>
+
           <div
-            class="reveal mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 border-t border-white/10 pt-12 font-drizy"
+            class="mt-12 md:mt-24 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-white/10 pt-12 font-drizy"
           >
-            <div>
-              <h4
-                class="text-accent-2 text-xs lg:text-xl uppercase mb-2 font-tropikal"
-              >
-                Frontend
+            <div
+              v-for="(skill, index) in ['Frontend', 'Backend', 'DevOps']"
+              :key="index"
+            >
+              <h4 class="text-accent-2 text-lg uppercase mb-2 font-tropikal">
+                {{ skill }}
               </h4>
               <p class="text-gray-400 text-sm italic">
-                Vue 3, Nuxt 4, Three.js, GSAP
+                {{
+                  index === 0
+                    ? "Vue 3, Nuxt 4, Three.js, GSAP"
+                    : index === 1
+                      ? "AdonisJS, Laravel, PostgreSQL"
+                      : "Linux, Docker, CI/CD"
+                }}
               </p>
-            </div>
-            <div>
-              <h4
-                class="text-accent-2 text-xs lg:text-xl uppercase mb-2 font-tropikal"
-              >
-                Backend
-              </h4>
-              <p class="text-gray-400 text-sm italic">
-                AdonisJS, Laravel, PostgreSQL
-              </p>
-            </div>
-            <div>
-              <h4
-                class="text-accent-2 text-xs lg:text-xl uppercase mb-2 font-tropikal"
-              >
-                DevOps
-              </h4>
-              <p class="text-gray-400 text-sm italic">Linux, Docker, CI/CD</p>
             </div>
           </div>
         </div>
@@ -93,17 +86,21 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
 <style scoped>
-.reveal-text {
-  will-change: color;
-}
 .section-about {
-  isolation: isolate;
+  isolation: isolate; /* تضمن استقلال الطبقات */
 }
 .about-word {
   position: relative;
   z-index: 30;
-  will-change: color, transform;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  will-change: color;
+  /* إضافة ظل خفيف للنص ليبرز فوق النقاط عند التداخل */
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 768px) {
+  .about-word {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1); /* تعزيز الظل في الجوال */
+  }
 }
 </style>
