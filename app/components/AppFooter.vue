@@ -16,6 +16,29 @@ onMounted(() => {
     duration: 1,
   })
 })
+
+const email = {
+  email: "radan1pro@gmail.com",
+  link: "mailto:radan1pro@gmail.com",
+}
+
+const links = [
+  {
+    name: "Github",
+    like: "https://github.com/radanpro",
+    icon: "ri-github-line",
+  },
+  {
+    name: "LinkedIn",
+    like: "https://www.linkedin.com/in/radanpro",
+    icon: "ri-linkedin-line",
+  },
+  {
+    name: "Twitter",
+    like: "https://twitter.com/a1radan",
+    icon: "ri-twitter-x-line",
+  },
+]
 </script>
 
 <template>
@@ -39,42 +62,27 @@ onMounted(() => {
             Get in touch
           </p>
           <a
-            href="mailto:radan1pro@gmail.com"
+            :href="email.link"
             class="text-4xl md:text-6xl font-tropikal hover:text-accent-2 transition-colors duration-500 wrap-break-words"
           >
-            radan1pro@gmail.com
+            {{ email.email }}
           </a>
         </div>
 
         <div class="flex flex-col md:items-end space-y-8">
           <div class="flex space-x-8">
-            <a href="#" class="group relative p-4">
-              <i
-                class="ri-github-line text-2xl group-hover:text-accent-2 transition-colors"
-              ></i>
-              <span
-                class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest"
-                >Github</span
-              >
-            </a>
-            <a href="#" class="group relative p-4">
-              <i
-                class="ri-linkedin-line text-2xl group-hover:text-accent-2 transition-colors"
-              ></i>
-              <span
-                class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest"
-                >LinkedIn</span
-              >
-            </a>
-            <a href="#" class="group relative p-4">
-              <i
-                class="ri-twitter-x-line text-2xl group-hover:text-accent-2 transition-colors"
-              ></i>
-              <span
-                class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest"
-                >Twitter</span
-              >
-            </a>
+            <template v-for="item in links" :key="item.name">
+              <a :href="item.like" class="group relative p-4">
+                <i
+                  class="text-2xl group-hover:text-accent-2 transition-colors"
+                  :class="item.icon"
+                ></i>
+                <span
+                  class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest"
+                  >{{ item.name }}</span
+                >
+              </a>
+            </template>
           </div>
 
           <div
