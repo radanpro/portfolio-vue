@@ -24,10 +24,12 @@ onMounted(() => {
 })
 </script>
 <template>
-  <section class="py-40 bg-transparent relative overflow-hidden section-about">
-    <TunnelBackground />
+  <section
+    class="py-40 bg-transparent relative overflow-hidden section-about z-0"
+  >
+    <TunnelBackground class="pointer-events-none" />
 
-    <div class="container mx-auto px-8 relative z-10">
+    <div class="container mx-auto px-8 relative z-20">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         <div class="lg:col-span-4">
           <div class="reveal stricky top-32">
@@ -42,17 +44,17 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="lg:col-span-8">
+        <div class="lg:col-span-8 w-2/3">
           <p
             class="font-drizy text-4xl md:text-6xl font-bold uppercase leading-[1.1] tracking-tighter text-white/20 flex flex-wrap"
           >
-            <!-- <span
+            <span
               v-for="(word, i) in words"
               :key="i"
               class="reveal-text about-word mr-4 mb-2 transition-colors duration-500 hover:text-accent"
             >
               {{ word }}
-            </span> -->
+            </span>
           </p>
           <div
             class="reveal mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 border-t border-white/10 pt-12 font-drizy"
@@ -94,5 +96,14 @@ onMounted(() => {
 <style scoped>
 .reveal-text {
   will-change: color;
+}
+.section-about {
+  isolation: isolate;
+}
+.about-word {
+  position: relative;
+  z-index: 30;
+  will-change: color, transform;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 </style>
