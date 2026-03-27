@@ -1,17 +1,20 @@
 export const useHeaderTransform = () => {
   const isScrolled = ref(false)
-  let last = 0
+  const isVisible = ref(true)
+  let lastScroll = 0
 
   const handleScroll = () => {
     const current = window.scrollY
 
-    if (current > 80 && last <= 80) {
-      isScrolled.value = true
-    } else if (current < 60 && last >= 60) {
-      isScrolled.value = false
+    isScrolled.value = current > 80
+
+    if (current > lastScroll && current > 550) {
+      isVisible.value = false
+    } else {
+      isVisible.value = true
     }
 
-    last = current
+    lastScroll = current <= 0 ? 0 : current
   }
 
   onMounted(() => {
@@ -22,5 +25,5 @@ export const useHeaderTransform = () => {
     window.removeEventListener("scroll", handleScroll)
   })
 
-  return { isScrolled }
+  return { isScrolled, isVisible }
 }
