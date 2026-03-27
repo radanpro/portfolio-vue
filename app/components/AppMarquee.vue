@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-hidden bg-accent py-4 -rotate-2 scale-105 shadow-[0_0_50px_rgba(255,42,109,0.3)]"
+    class="overflow-hidden bg-accent py-4 my-2 md:my-8 -rotate-2 scale-105 shadow-[0_0_50px_rgba(255,42,109,0.3)]"
   >
     <div class="marquee-track flex whitespace-nowrap">
       <div class="flex" v-for="i in 4" :key="i">
