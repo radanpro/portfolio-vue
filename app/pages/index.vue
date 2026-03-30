@@ -85,6 +85,7 @@ const titleArr = [
     <AppMarquee />
 
     <AboutSection />
+    <StatsSection />
 
     <section id="work" class="py-32">
       <div
