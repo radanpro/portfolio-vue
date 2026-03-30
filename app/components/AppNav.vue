@@ -24,16 +24,7 @@ const isMobileMenuOpen = ref(false)
       ]"
     >
       <div ref="logoRef" class="cursor-pointer z-60">
-        <span
-          :class="[
-            'font-display font-bold tracking-tight transition-all duration-500',
-            isScrolled
-              ? 'text-lg text-white'
-              : 'text-xl md:text-2xl text-white',
-          ]"
-        >
-          RADAN<span class="text-accent-2">.</span>
-        </span>
+        <TheLogo :is-scrolled="isScrolled" />
       </div>
 
       <div
