@@ -34,7 +34,7 @@ const titleArr = [
 ]
 </script>
 <template>
-  <div class="container mx-auto px-8 pb-32">
+  <div class="mx-auto px-8 pb-32">
     <section
       class="min-h-screen flex flex-col justify-center items-center text-center relative"
     >
