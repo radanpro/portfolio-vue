@@ -8,6 +8,8 @@ const aboutText =
 
 const words = aboutText.split(" ")
 
+useScrollAnimations()
+
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger)
 

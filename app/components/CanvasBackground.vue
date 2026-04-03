@@ -62,10 +62,11 @@ onMounted(() => {
   }
   window.addEventListener("mousemove", onMouseMove)
 
-  const clock = new THREE.Clock()
+  const timer = new THREE.Timer()
 
   const animate = () => {
-    const elapsedTime = clock.getElapsedTime()
+    timer.update()
+    const elapsedTime = timer.getElapsed()
 
     // particlesMesh.rotation.x = elapsedTime * 0.05
     particlesMesh.rotation.y = elapsedTime * 0.05
