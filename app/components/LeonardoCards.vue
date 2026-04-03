@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useLeonardoAnimation } from "~/composables/useLeonardoAnimation"
+import { ref, onMounted, onUnmounted } from "vue"
 
 const cardsData = [
   {
@@ -31,6 +32,21 @@ const cardsData = [
 // Initialize the animation
 const { init: initLeonardo } = useLeonardoAnimation(".leo-card-wrapper")
 initLeonardo()
+
+const screenWidth = ref(0)
+
+const updateWidth = () => {
+  screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  updateWidth()
+  window.addEventListener("resize", updateWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateWidth)
+})
 </script>
 
 <template>
@@ -53,7 +69,10 @@ initLeonardo()
         </button>
       </div>
 
-      <div class="relative group cursor-pointer">
+      <div
+        class="relative group cursor-pointer"
+        :class="screenWidth < 767 ? 'mt-8' : ''"
+      >
         <div
           class="img-container relative aspect-video rounded-[30px] overflow-hidden bg-[#111]"
         >
@@ -66,7 +85,7 @@ initLeonardo()
         <h3
           class="absolute font-black italic tracking-tighter leading-none pointer-events-none z-20 w-full text-center"
           :style="{
-            fontSize: '10vw',
+            fontSize: screenWidth < 767 ? '20vw' : '10vw',
             color: card.color,
             bottom: card.type === 'bottom' ? '-25%' : 'auto',
             top: card.type === 'top' ? '-30%' : 'auto',
