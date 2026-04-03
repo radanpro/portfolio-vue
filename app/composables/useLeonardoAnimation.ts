@@ -2,24 +2,15 @@ import { onMounted, onUnmounted } from "vue"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
-import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 export const useLeonardoAnimation = (cardsSelector: string) => {
   const init = () => {
     let ctx: gsap.Context | null = null
-    let smoother: ScrollSmoother | null = null
 
     onMounted(() => {
-      gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText)
+      gsap.registerPlugin(ScrollTrigger, SplitText)
 
       ctx = gsap.context(() => {
-        smoother = ScrollSmoother.create({
-          wrapper: "#smooth-wrapper",
-          content: "#smooth-content",
-          smooth: 2,
-          effects: true,
-        })
-
         const cards = gsap.utils.toArray<HTMLElement>(cardsSelector)
 
         cards.forEach((card, i) => {
