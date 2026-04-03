@@ -64,13 +64,13 @@ initLeonardo()
         </div>
 
         <h3
-          class="absolute font-black italic tracking-tighter leading-none pointer-events-none z-20"
+          class="absolute font-black italic tracking-tighter leading-none pointer-events-none z-20 w-full text-center"
           :style="{
-            fontSize: '12vw',
+            fontSize: '10vw',
             color: card.color,
-            bottom: card.type === 'bottom' ? '-10%' : 'auto',
-            top: card.type === 'top' ? '-10%' : 'auto',
-            [i % 2 === 0 ? 'right' : 'left']: '-5%',
+            bottom: card.type === 'bottom' ? '-25%' : 'auto',
+            top: card.type === 'top' ? '-30%' : 'auto',
+            [i % 2 === 0 ? 'left' : 'right']: '-5%',
           }"
         >
           {{ card.title }}
@@ -90,5 +90,8 @@ initLeonardo()
 }
 .card-selector {
   overflow: hidden;
+}
+.leo-card-wrapper {
+  perspective: 1000px;
 }
 </style>
