@@ -61,7 +61,9 @@ onUnmounted(() => {
         <h2 class="text-5xl font-black text-white mb-4 uppercase">
           {{ card.title }}
         </h2>
-        <p class="text-gray-400 max-w-sm mb-6">{{ card.desc }}</p>
+        <p class="leo-card-description text-gray-400 max-w-sm mb-6">
+          {{ card.desc }}
+        </p>
         <button
           class="px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition"
         >
@@ -112,5 +114,9 @@ onUnmounted(() => {
 }
 .leo-card-wrapper {
   perspective: 1000px;
+}
+.leo-card-description :deep(.leo-desc-line),
+.leo-card-description :deep(.leo-desc-line-mask) {
+  display: block;
 }
 </style>
