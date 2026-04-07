@@ -37,9 +37,9 @@ export const useCinematicHero = (
           const isMobile = Boolean(conditions?.isMobile)
           const isTablet = Boolean(conditions?.isTablet)
 
-          const perspective = isMobile ? 740 : isTablet ? 980 : 1280
-          const cameraTravel = isMobile ? 1800 : isTablet ? 2200 : 2600
-          const scrollDistance = isMobile ? 2000 : isTablet ? 2300 : 2800
+          const perspective = isMobile ? 800 : isTablet ? 1000 : 1400
+          const cameraTravel = isMobile ? 3600 : isTablet ? 4500 : 5500
+          const scrollDistance = isMobile ? 3000 : isTablet ? 4000 : 5000
 
           gsap.set(hero, { perspective })
           gsap.set(scene, {

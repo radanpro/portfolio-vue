@@ -18,11 +18,10 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
           class="cinematic-layer cinematic-wall"
           data-cinematic-layer
           data-pass="0.85"
-          data-driftx="-3"
           :style="{
-            '--x': '-100vw',
+            '--x': '-45vw',
             '--y': '-50%',
-            '--z': `${-1960 - i * 600}px`,
+            '--z': `${-1000 - i * 800}px`,
             '--rx': '0deg',
             '--ry': '90deg',
             '--rz': '0deg',
@@ -37,11 +36,10 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
           class="cinematic-layer cinematic-wall"
           data-cinematic-layer
           data-pass="0.85"
-          data-driftx="3"
           :style="{
-            '--x': '30vw',
+            '--x': '50vw',
             '--y': '-50%',
-            '--z': `${-1960 - i * 600}px`,
+            '--z': `${-1000 - i * 800}px`,
             '--rx': '0deg',
             '--ry': '270deg',
             '--rz': '0deg',
@@ -56,10 +54,9 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
           class="cinematic-layer cinematic-surface"
           data-cinematic-layer
           data-pass="0.77"
-          data-drifty="-8"
           :style="{
             '--x': '-50%',
-            '--y': '-34vh',
+            '--y': '-35vh',
             '--z': `${-1720 - i * 600}px`,
             '--rx': '-87deg',
             '--ry': '0deg',
@@ -70,17 +67,16 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
         </p>
 
         <p
-          v-for="(word, i) in ['CREATE', 'BOLD', 'SHIP', 'FAST']"
+          v-for="(word, i) in ['CREATEAI', 'BOLD', 'SHIP', 'FAST']"
           :key="'B' + i"
           class="cinematic-layer cinematic-surface"
           data-cinematic-layer
           data-pass="0.75"
-          data-drifty="8"
           :style="{
             '--x': '-50%',
-            '--y': '34vh',
-            '--z': `${-1720 - i * 600}px`,
-            '--rx': '87deg',
+            '--y': '25vh',
+            '--z': `${-1000 - i * 800}px`,
+            '--rx': '90deg',
             '--ry': '0deg',
             '--rz': '0deg',
           }"
@@ -92,8 +88,7 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
           class="cinematic-layer cinematic-core"
           data-cinematic-layer
           data-pass="0.66"
-          data-drifty="-4"
-          style="--x: -50%; --y: -50%; --z: -600px"
+          style="--x: -50%; --y: -50%; --z: -4800px"
         >
           <h1 class="core-title">DIGITAL ARCHITECT</h1>
           <p class="core-copy">Scroll to travel through the tunnel.</p>
@@ -195,11 +190,12 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
 }
 
 .cinematic-wall {
-  font-size: clamp(3rem, 17vw, 16rem);
+  font-size: clamp(4rem, 20vw, 18rem);
+  text-align: center;
 }
 
 .cinematic-surface {
-  font-size: clamp(2rem, 11vw, 10rem);
+  font-size: clamp(3rem, 15vw, 12rem);
 }
 
 .surface-one-line {
@@ -215,11 +211,8 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
 }
 
 .cinematic-core {
-  width: min(88vw, 760px);
-  white-space: normal;
-  text-align: center;
-  color: #fff;
-  pointer-events: auto;
+  width: min(90vw, 800px);
+  z-index: 10;
 }
 
 .core-tag {
