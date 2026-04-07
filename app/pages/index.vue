@@ -28,11 +28,14 @@ const projects = [
 </script>
 <template>
   <div class="mx-auto px-8 pb-32">
-    <CinematicHero3D />
+    <!--  <CinematicHero3D />  -->
     <HeroSection />
     <AppMarquee />
 
     <AboutSection />
+    <div>
+      <LogoParticles />
+    </div>
     <StatsSection />
     <LeonardoCards />
 
