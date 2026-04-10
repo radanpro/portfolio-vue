@@ -6,7 +6,7 @@ useSmoothScroll()
     <CanvasBackground />
     <CustomCursor />
     <AppNav />
-
+    <!-- Nuxtpage -->
     <NuxtPage />
   </div>
 </template>
