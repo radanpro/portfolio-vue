@@ -1,97 +1,42 @@
 <script setup lang="ts">
-const sectionRef = ref<HTMLElement | null>(null)
-const heroRef = ref<HTMLElement | null>(null)
 const sceneRef = ref<HTMLElement | null>(null)
 
-useCinematicHero(sectionRef, heroRef, sceneRef)
+const tunnelContent = {
+  left: ["FRONTEND", "MASTER"],
+  right: ["BACKEND FRONTEND", "EXPERT FRONTEND"],
+  top: ["MODERN FRONTEND", "DESIGN FRONTEND"],
+  bottom: ["CLEAN FRONTEND", "CODE FRONTEND"],
+  back: ["SHEHAB FRONTEND", "RADAN FRONTEND"],
+}
+
+use3DTunnel(sceneRef)
 </script>
 
 <template>
-  <section ref="sectionRef" class="cinematic-hero-shell">
-    <div ref="heroRef" class="cinematic-hero">
-      <div class="cinematic-noise" aria-hidden="true"></div>
+  <section class="tunnel-container">
+    <div class="viewport">
+      <div class="box-wrapper">
+        <div ref="sceneRef" class="scene">
+          <div class="wall wall-left">
+            <p v-for="text in tunnelContent.left" :key="text">{{ text }}</p>
+          </div>
 
-      <div ref="sceneRef" class="cinematic-scene">
-        <p
-          v-for="(word, i) in ['YOUR', 'IDEAS', 'START', 'HERE']"
-          :key="'L' + i"
-          class="cinematic-layer cinematic-wall"
-          data-cinematic-layer
-          data-pass="0.85"
-          :style="{
-            '--x': '-45vw',
-            '--y': '-50%',
-            '--z': `${-1000 - i * 800}px`,
-            '--rx': '0deg',
-            '--ry': '90deg',
-            '--rz': '0deg',
-          }"
-        >
-          {{ word }}
-        </p>
+          <div class="wall wall-right">
+            <p v-for="text in tunnelContent.right" :key="text">{{ text }}</p>
+          </div>
 
-        <p
-          v-for="(word, i) in ['YOUR', 'TOOLS', 'FOR', 'AI']"
-          :key="'R' + i"
-          class="cinematic-layer cinematic-wall"
-          data-cinematic-layer
-          data-pass="0.85"
-          :style="{
-            '--x': '50vw',
-            '--y': '-50%',
-            '--z': `${-1000 - i * 800}px`,
-            '--rx': '0deg',
-            '--ry': '270deg',
-            '--rz': '0deg',
-          }"
-        >
-          {{ word }}
-        </p>
+          <div class="wall wall-top">
+            <p v-for="text in tunnelContent.top" :key="text">{{ text }}</p>
+          </div>
 
-        <p
-          v-for="(word, i) in ['CINEMATIC', 'WEB', 'INTERFACES']"
-          :key="'T' + i"
-          class="cinematic-layer cinematic-surface"
-          data-cinematic-layer
-          data-pass="0.77"
-          :style="{
-            '--x': '-50%',
-            '--y': '-35vh',
-            '--z': `${-1720 - i * 600}px`,
-            '--rx': '-87deg',
-            '--ry': '0deg',
-            '--rz': '0deg',
-          }"
-        >
-          {{ word }}
-        </p>
+          <div class="wall wall-bottom">
+            <p v-for="text in tunnelContent.bottom" :key="text">{{ text }}</p>
+          </div>
 
-        <p
-          v-for="(word, i) in ['CREATEAI', 'BOLD', 'SHIP', 'FAST']"
-          :key="'B' + i"
-          class="cinematic-layer cinematic-surface"
-          data-cinematic-layer
-          data-pass="0.75"
-          :style="{
-            '--x': '-50%',
-            '--y': '25vh',
-            '--z': `${-1000 - i * 800}px`,
-            '--rx': '90deg',
-            '--ry': '0deg',
-            '--rz': '0deg',
-          }"
-        >
-          {{ word }}
-        </p>
-
-        <div
-          class="cinematic-layer cinematic-core"
-          data-cinematic-layer
-          data-pass="0.66"
-          style="--x: -50%; --y: -50%; --z: -4800px"
-        >
-          <h1 class="core-title">DIGITAL ARCHITECT</h1>
-          <p class="core-copy">Scroll to travel through the tunnel.</p>
+          <div class="wall wall-back">
+            <h1>{{ tunnelContent.back[0] }}</h1>
+            <p>{{ tunnelContent.back[1] }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -99,236 +44,118 @@ useCinematicHero(sectionRef, heroRef, sceneRef)
 </template>
 
 <style scoped>
-.cinematic-hero-shell {
+.tunnel-container {
   position: relative;
   width: 100vw;
-  margin-left: calc(50% - 50vw);
+  height: 300vh;
+  background: #020202;
 }
 
-.cinematic-hero {
-  position: relative;
+.viewport {
+  position: sticky;
+  top: 0;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  perspective: 1280px;
-  perspective-origin: 50% 50%;
-  isolation: isolate;
-  background:
-    radial-gradient(
-      circle at 50% 42%,
-      rgba(118, 99, 255, 0.32) 0%,
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 50% 105%,
-      rgba(118, 99, 255, 0.4) 0%,
-      transparent 48%
-    ),
-    #020202;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  perspective: 1200px;
 }
 
-.cinematic-hero::after {
-  content: "";
+.box-wrapper {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  transform-style: preserve-3d;
+}
+
+.scene {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 8;
-  background: radial-gradient(
-    circle,
-    transparent 55%,
-    rgba(0, 0, 0, 0.64) 100%
-  );
-}
-
-.cinematic-noise {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.28;
-  mix-blend-mode: soft-light;
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.1) 0,
-    rgba(255, 255, 255, 0.1) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
-
-.cinematic-scene {
-  position: absolute;
-  inset: -20vh -18vw;
-  z-index: 5;
   transform-style: preserve-3d;
   will-change: transform;
 }
 
-.cinematic-layer {
+.wall {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
-  transform: translate3d(var(--x, 0), var(--y, 0), var(--z, 0))
-    rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg));
-}
-
-.cinematic-wall,
-.cinematic-surface,
-.cinematic-depth {
-  font-family: var(--font-drizy);
-  font-weight: 800;
-  line-height: 0.82;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: #7869ff;
-  text-shadow: 0 0 22px rgba(120, 105, 255, 0.36);
-}
-
-.cinematic-wall {
-  font-size: clamp(4rem, 20vw, 18rem);
-  text-align: center;
-}
-
-.cinematic-surface {
-  font-size: clamp(3rem, 15vw, 12rem);
-}
-
-.surface-one-line {
-  white-space: nowrap !important;
-  width: max-content;
-  word-break: keep-all;
-  overflow-wrap: normal;
-}
-
-.cinematic-depth {
-  font-size: clamp(2.4rem, 13vw, 12rem);
-  opacity: 0.24;
-}
-
-.cinematic-core {
-  width: min(90vw, 800px);
-  z-index: 10;
-}
-
-.core-tag {
-  display: inline-flex;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.38rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: 999px;
-  font-family: var(--font-black-sansa);
-  font-size: clamp(0.64rem, 1.1vw, 0.8rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.core-title {
-  margin: 0.9rem 0 0;
-  font-family: var(--font-drizy);
-  font-size: clamp(2rem, 6.8vw, 6.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.core-copy {
-  margin: 1rem auto 0;
-  max-width: 58ch;
-  font-family: var(--font-black-sansa);
-  font-size: clamp(0.9rem, 1.35vw, 1.12rem);
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.core-actions {
-  margin-top: 1.4rem;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border: 1px solid rgba(120, 105, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: flex;
-  gap: 0.7rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-around;
 }
 
-.core-btn {
-  border-radius: 999px;
-  padding: 0.68rem 1.35rem;
-  font-family: var(--font-black-sansa);
-  font-size: 0.86rem;
-  letter-spacing: 0.04em;
-  transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.core-btn:hover {
-  transform: translateY(-1px);
-}
-
-.core-btn--solid {
-  background: #fff;
-  color: #111;
-}
-
-.core-btn--ghost {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #fff;
-  background: transparent;
-}
-
-.cinematic-hud {
-  font-family: var(--font-black-sansa);
-  font-size: clamp(0.68rem, 1.2vw, 0.92rem);
+.wall p,
+.wall h1 {
+  font-family: sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.32em;
-  color: rgba(255, 255, 255, 0.6);
+  color: #7869ff;
+  margin: 0;
+  line-height: 0.85;
+  white-space: nowrap;
+  text-shadow: 0 0 15px rgba(120, 105, 255, 0.5);
+  width: 99%;
+  text-align: center;
+  /* display: block; */
+  transform: scaleX(1.2) scaleY(3);
+  /* letter-spacing: -0.05em; */
 }
 
-@media (max-width: 1023px) {
-  .cinematic-scene {
-    inset: -14vh -36vw;
-  }
-
-  .cinematic-wall {
-    font-size: clamp(2.6rem, 20vw, 11rem);
-  }
-
-  .cinematic-surface {
-    font-size: clamp(1.8rem, 13vw, 7rem);
-  }
+.wall-left {
+  font-size: 5rem;
+  transform: translateX(-300px) rotateY(90deg);
 }
 
-@media (max-width: 767px) {
-  .cinematic-hero {
-    perspective: 740px;
-  }
+.wall-right {
+  font-size: 5rem;
+  transform: translateX(300px) rotateY(-90deg);
+}
 
-  .cinematic-scene {
-    inset: -8vh -58vw;
-  }
+.wall-top {
+  font-size: 4rem;
+  transform: translateY(-200px) rotateX(-90deg);
+}
 
-  .cinematic-core {
-    width: min(92vw, 520px);
-  }
+.wall-bottom {
+  font-size: 4rem;
+  transform: translateY(200px) rotateX(90deg);
+}
 
-  .core-title {
-    font-size: clamp(1.8rem, 9.5vw, 3.8rem);
-  }
+.wall-back {
+  font-size: 3rem;
+  transform: translateZ(-1500px);
+}
 
-  .core-copy {
-    font-size: 0.9rem;
+@media (max-width: 768px) {
+  .box-wrapper {
+    width: 90vw;
+    height: 30vh;
   }
-
-  .core-btn {
-    font-size: 0.78rem;
-    padding: 0.62rem 1.16rem;
+  .wall-left {
+    transform: translateX(-45vw) rotateY(90deg);
+    font-size: 3rem;
+  }
+  .wall-right {
+    transform: translateX(45vw) rotateY(-90deg);
+    font-size: 3rem;
+  }
+  .wall-top {
+    transform: translateY(-15vh) rotateX(-90deg);
+    font-size: 2.5rem;
+  }
+  .wall-bottom {
+    transform: translateY(15vh) rotateX(90deg);
+    font-size: 2.5rem;
   }
 }
 </style>

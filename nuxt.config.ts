@@ -4,12 +4,15 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineNuxtConfig({
   future: { compatibilityVersion: 4 },
   css: ["@/assets/css/main.css"],
-
+  modules: ["@tresjs/nuxt"],
+  tres: {
+    devtools: true,
+  },
   vite: {
     plugins: [tailwindcss()],
     devBundler: "vite-node",
     optimizeDeps: {
-      exclude: ["isbot"],
+      exclude: ["isbot", "@tresjs/core", "three"],
     },
     server: {
       hmr: {
