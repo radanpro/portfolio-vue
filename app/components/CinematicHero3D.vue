@@ -2,10 +2,18 @@
 const sceneRef = ref<HTMLElement | null>(null)
 
 const tunnelContent = {
-  left: ["FRONTEND", "MASTER"],
-  right: ["BACKEND FRONTEND", "EXPERT FRONTEND"],
-  top: ["MODERN FRONTEND", "DESIGN FRONTEND"],
-  bottom: ["CLEAN FRONTEND", "CODE FRONTEND"],
+  left: ["FRONTEND MASTER".repeat(3), "DEVELOPMENT".repeat(3)],
+  right: ["BACKEND FRONTEND".repeat(3), "EXPERT FRONTEND".repeat(3)],
+  top: [
+    "MODERN INTERFACES ".repeat(2),
+    "GSAP ANIMATIONS ".repeat(2),
+    "NUXT 4 PRO",
+  ],
+  bottom: [
+    "CLEAN FRONTEND".repeat(2),
+    "CODE FRONTEND".repeat(2),
+    "PERFORMANCE FRONTEND".repeat(2),
+  ],
   back: ["SHEHAB FRONTEND", "RADAN FRONTEND"],
 }
 
@@ -46,8 +54,8 @@ use3DTunnel(sceneRef)
 <style scoped>
 .tunnel-container {
   position: relative;
-  width: 100vw;
-  height: 300vh;
+  width: 100%;
+  height: 100%;
   background: #020202;
 }
 
@@ -59,13 +67,13 @@ use3DTunnel(sceneRef)
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  perspective: 1200px;
+  perspective: 500px;
 }
 
 .box-wrapper {
   position: relative;
-  width: 600px;
-  height: 400px;
+  width: 750px;
+  height: 450px;
   transform-style: preserve-3d;
 }
 
@@ -106,34 +114,42 @@ use3DTunnel(sceneRef)
   text-shadow: 0 0 15px rgba(120, 105, 255, 0.5);
   width: 99%;
   text-align: center;
-  /* display: block; */
-  transform: scaleX(1.2) scaleY(3);
-  /* letter-spacing: -0.05em; */
+  transform: scaleX(2.1) scaleY(3);
 }
 
+.wall-left,
+.wall-right {
+  width: 110%;
+  height: 110%;
+}
 .wall-left {
   font-size: 5rem;
-  transform: translateX(-300px) rotateY(90deg);
+  transform: translateX(-400px) rotateY(90deg);
 }
 
 .wall-right {
   font-size: 5rem;
-  transform: translateX(300px) rotateY(-90deg);
+  transform: translateX(320px) rotateY(-90deg);
 }
 
+.wall-top,
+.wall-bottom {
+  width: 80%;
+  /* height: 99%; */
+}
 .wall-top {
   font-size: 4rem;
-  transform: translateY(-200px) rotateX(-90deg);
+  transform: translateY(-200px) translateX(100px) rotateX(-90deg);
 }
 
 .wall-bottom {
   font-size: 4rem;
-  transform: translateY(200px) rotateX(90deg);
+  transform: translateY(200px) translateX(100px) rotateX(90deg);
 }
 
 .wall-back {
   font-size: 3rem;
-  transform: translateZ(-1500px);
+  transform: translateZ(-2000px);
 }
 
 @media (max-width: 768px) {
