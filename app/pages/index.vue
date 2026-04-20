@@ -32,6 +32,15 @@ const projects = [
     <HeroSection />
     <AppMarquee />
 
+    <section class="py-20">
+      <h2
+        class="text-3xl font-drizy mb-10 text-center uppercase tracking-widest text-white/50"
+      >
+        World Exploration
+      </h2>
+      <ExpandingCards />
+    </section>
+
     <AboutSection />
     <div>
       <LogoParticles />
