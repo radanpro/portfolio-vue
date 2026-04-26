@@ -29,6 +29,7 @@ const projects = [
 <template>
   <div class="mx-auto px-8 pb-32">
     <CinematicHero3D />
+    <FloatingIntro />
 
     <section class="py-20">
       <h2
