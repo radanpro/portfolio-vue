@@ -29,8 +29,6 @@ const projects = [
 <template>
   <div class="mx-auto px-8 pb-32">
     <CinematicHero3D />
-    <HeroSection />
-    <AppMarquee />
 
     <section class="py-20">
       <h2
@@ -40,6 +38,9 @@ const projects = [
       </h2>
       <ExpandingCards />
     </section>
+    <div class="h-screen"></div>
+    <HeroSection />
+    <AppMarquee />
 
     <AboutSection />
     <div>
