@@ -27,7 +27,7 @@ const projects = [
 ];
 </script>
 <template>
-  <div class="mx-auto px-8 pb-32">
+  <div class="mx-auto pb-32">
     <CinematicHero3D />
     <FloatingIntro />
 
