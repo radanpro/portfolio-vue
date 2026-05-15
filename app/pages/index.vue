@@ -28,7 +28,7 @@ const projects = [
 </script>
 <template>
   <div class="mx-auto px-8 pb-32">
-    <!-- <CinematicHero3D /> -->
+    <CinematicHero3D />
     <FloatingIntro />
 
     <section class="py-20">
@@ -41,16 +41,17 @@ const projects = [
     </section>
     <div class="h-screen"></div>
     <HeroSection />
-    <!-- <AppMarquee /> -->
+    <AppMarquee />
 
-    <!-- <AboutSection /> -->
-    <!-- <div>
+    <AboutSection />
+    <div>
       <LogoParticles />
-    </div> -->
-    <!-- <StatsSection /> -->
-    <!-- <LeonardoCards /> -->
+    </div>
+    <StatsSection />
+    <LeonardoCards />
 
     <MaskedStack />
+    <LeonardoHexGrid />
 
     <section id="work" class="py-32">
       <div
