@@ -91,7 +91,7 @@ const isMobileMenuOpen = ref(false)
       >
         <div
           v-if="isMobileMenuOpen"
-          class="absolute top-16 left-0 my-4 w-full h-screen bg-black flex flex-col items-center justify-start space-y-8 text-2xl uppercase tracking-[0.2em] font-bold md:hidden"
+          class="absolute top-16 left-0 my-4 w-full h-[80vh] bg-black/80 backdrop-blur-2xl flex flex-col items-center justify-center space-y-8 text-2xl uppercase tracking-[0.2em] font-bold md:hidden rounded-3xl border border-white/10 mx-auto"
         >
           <a
             v-for="item in navHeader"

@@ -56,7 +56,9 @@ use3DTunnel(sceneRef)
   position: relative;
   width: 100%;
   height: 100%;
-  background: #020202;
+  background: rgba(5, 5, 5, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .viewport {
@@ -93,7 +95,8 @@ use3DTunnel(sceneRef)
   justify-content: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  border: 1px solid rgba(120, 105, 255, 0.1);
+  border: 1px solid rgba(120, 105, 255, 0.15);
+  background: rgba(120, 105, 255, 0.03);
   width: 100%;
   height: 100%;
   overflow: hidden;

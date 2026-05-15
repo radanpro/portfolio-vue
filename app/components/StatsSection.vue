@@ -47,7 +47,7 @@ onMounted(() => {
         <div
           v-for="(stat, i) in stats"
           :key="i"
-          class="reveal p-10 bg-white/2 border border-white/5 rounded-3xl hover:border-accent-2/30 transition-colors group relative overflow-hidden"
+          class="reveal p-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl hover:border-accent-2/30 transition-colors group relative overflow-hidden"
         >
           <div
             class="absolute -right-10 -top-10 w-32 h-32 bg-accent-2/5 blur-3xl group-hover:bg-accent-2/20 transition-all duration-700"

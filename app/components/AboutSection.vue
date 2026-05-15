@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { onMounted } from "vue"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { onMounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const aboutText =
-  "Dinital Architect crafting immersive web experience at the intersection of design technology.  Focused on high-end animations, creative codeing, and rebust DevOps architectures."
+  "Dinital Architect crafting immersive web experience at the intersection of design technology.  Focused on high-end animations, creative codeing, and rebust DevOps architectures.";
 
-const words = aboutText.split(" ")
+const words = aboutText.split(" ");
 
-useScrollAnimations()
+useScrollAnimations();
 
 onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 
   gsap.to(".about-word", {
     color: "#ffffff",
@@ -22,8 +22,8 @@ onMounted(() => {
       end: "bottom 40%",
       scrub: true,
     },
-  })
-})
+  });
+});
 </script>
 <template>
   <section
@@ -91,18 +91,19 @@ onMounted(() => {
 
 <style scoped>
 .section-about {
-  isolation: isolate; /* تضمن استقلال الطبقات */
+  isolation: isolate;
+  background-color: rgba(10, 54, 43, 0.5);
+  border-radius: 30px;
 }
 .about-word {
   position: relative;
   z-index: 30;
   will-change: color;
-  /* إضافة ظل خفيف للنص ليبرز فوق النقاط عند التداخل */
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
 @media (max-width: 768px) {
   .about-word {
-    text-shadow: 0 0 10px rgba(0, 0, 0, 1); /* تعزيز الظل في الجوال */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
   }
 }
 </style>

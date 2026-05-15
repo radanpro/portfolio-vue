@@ -50,7 +50,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="bg-black py-20">
+  <section class="bg-transparent py-20">
     <div
       v-for="(card, i) in cardsData"
       :key="i"

@@ -224,6 +224,6 @@ onUnmounted(() => {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #20243531;
+  background-color: transparent;
 }
 </style>

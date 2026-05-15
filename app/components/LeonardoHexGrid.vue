@@ -42,13 +42,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="hex-section py-32 overflow-hidden bg-black">
+  <section class="hex-section py-32 overflow-hidden bg-transparent">
     <div ref="gridRef" class="container mx-auto px-4 perspective-container">
       <div class="grid grid-cols-2 md:grid-cols-3 gap-8 hex-grid">
         <div
           v-for="(img, i) in [...images, ...images]"
           :key="i"
-          class="hex-item relative aspect-square overflow-hidden rounded-3xl border border-white/10 shadow-2xl"
+          class="hex-item relative aspect-square overflow-hidden rounded-3xl border border-white/10 shadow-2xl backdrop-blur-sm bg-white/5"
         >
           <img
             :src="img"

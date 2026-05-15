@@ -128,7 +128,9 @@ onUnmounted(() => clearInterval(timer))
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
   flex: 0.7;
   transform-style: preserve-3d;
 }

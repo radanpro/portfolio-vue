@@ -136,6 +136,6 @@ onBeforeUnmount(() => {
 <template>
   <section
     ref="containerRef"
-    class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black"
+    class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white/5 backdrop-blur-sm"
   />
 </template>

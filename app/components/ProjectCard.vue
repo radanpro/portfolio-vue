@@ -59,7 +59,7 @@ const onMouseLeave = () => {
     ref="cardRef"
     @mousemove="onMouseMove"
     @mouseleave="onMouseLeave"
-    class="relative group cursor-pointer bg-white/5 border border-white/10 rounded-2xl overflow-hidden aspect-16/10 transition-colors hover:border-accent-2/30"
+    class="relative group cursor-pointer bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden aspect-16/10 transition-colors hover:border-accent-2/30"
   >
     <div
       class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700"
