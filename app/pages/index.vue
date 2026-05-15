@@ -24,11 +24,11 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000",
   },
-]
+];
 </script>
 <template>
   <div class="mx-auto px-8 pb-32">
-    <CinematicHero3D />
+    <!-- <CinematicHero3D /> -->
     <FloatingIntro />
 
     <section class="py-20">
@@ -41,16 +41,16 @@ const projects = [
     </section>
     <div class="h-screen"></div>
     <HeroSection />
-    <AppMarquee />
+    <!-- <AppMarquee /> -->
 
-    <AboutSection />
-    <div>
+    <!-- <AboutSection /> -->
+    <!-- <div>
       <LogoParticles />
-    </div>
-    <StatsSection />
-    <LeonardoCards />
+    </div> -->
+    <!-- <StatsSection /> -->
+    <!-- <LeonardoCards /> -->
 
-    <!-- <MaskedStack /> -->
+    <MaskedStack />
 
     <section id="work" class="py-32">
       <div
