@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSmoothScroll()
+useSmoothScroll();
 </script>
 <template>
   <div class="min-h-screen relative text-white">
