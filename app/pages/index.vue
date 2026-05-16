@@ -50,7 +50,6 @@ const projects = [
     <StatsSection />
     <LeonardoCards />
 
-    <MaskedStack />
     <LeonardoHexGrid />
 
     <section id="work" class="py-32">
