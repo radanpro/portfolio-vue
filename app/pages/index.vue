@@ -35,7 +35,7 @@ const projects = [
       <h2
         class="text-3xl font-drizy mb-10 text-center uppercase tracking-widest text-white/50"
       >
-        World Exploration
+        Real World Projects
       </h2>
       <ExpandingCards />
     </section>

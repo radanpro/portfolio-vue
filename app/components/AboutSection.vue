@@ -4,8 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const aboutText =
-  "Dinital Architect crafting immersive web experience at the intersection of design technology.  Focused on high-end animations, creative codeing, and rebust DevOps architectures.";
-
+  "Full Stack Developer and System Architect focused on building scalable web applications, robust backend systems, and modern digital platforms using Laravel, Python, Vue, React, and DevOps technologies.";
 const words = aboutText.split(" ");
 
 useScrollAnimations();
@@ -24,6 +23,36 @@ onMounted(() => {
     },
   });
 });
+
+const handleMagnetic = (e: MouseEvent) => {
+  const el = e.currentTarget as HTMLElement;
+  const rect = el.getBoundingClientRect();
+  const x = e.clientX - rect.left - rect.width / 2;
+  const y = e.clientY - rect.top - rect.height / 2;
+
+  gsap.to(el, {
+    x: x * 0.3,
+    y: y * 0.3,
+    skewX: -10, // The parallelogram shape
+    scale: 1.05,
+    duration: 0.6,
+    ease: "power2.out",
+    overwrite: true,
+  });
+};
+
+const resetMagnetic = (e: MouseEvent) => {
+  const el = e.currentTarget as HTMLElement;
+  gsap.to(el, {
+    x: 0,
+    y: 0,
+    skewX: 0,
+    scale: 1,
+    duration: 0.8,
+    ease: "elastic.out(1, 0.3)",
+    overwrite: true,
+  });
+};
 </script>
 <template>
   <section
@@ -38,13 +67,13 @@ onMounted(() => {
             <span
               class="text-accent-2 font-display uppercase tracking-[0.3em] font-bold text-sm md:text-xl"
             >
-              Philosophy
+              Expertise
             </span>
             <h3
               class="text-3xl md:text-4xl font-tropikal font-bold mt-4 leading-tight text-white"
             >
-              Merging Aesthetics <br class="hidden md:block" />
-              With Performance
+              Building Scalable Systems <br class="hidden md:block" />
+              With Modern Technologies
             </h3>
           </div>
         </div>
@@ -68,19 +97,26 @@ onMounted(() => {
             <div
               v-for="(skill, index) in ['Frontend', 'Backend', 'DevOps']"
               :key="index"
+              class="skill-card group bg-white/5 backdrop-blur-md rounded-2xl px-8 py-10 border border-white/10 transition-all duration-300 hover:border-accent-2/50 hover:bg-white/10"
+              @mousemove="(e) => handleMagnetic(e)"
+              @mouseleave="(e) => resetMagnetic(e)"
             >
-              <h4 class="text-accent-2 text-lg uppercase mb-2 font-tropikal">
-                {{ skill }}
-              </h4>
-              <p class="text-gray-400 text-sm italic">
-                {{
-                  index === 0
-                    ? "Vue 3, Nuxt 4, Three.js, GSAP"
-                    : index === 1
-                      ? "AdonisJS, Laravel, PostgreSQL"
-                      : "Linux, Docker, CI/CD"
-                }}
-              </p>
+              <div class="relative z-10 pointer-events-none">
+                <h4 class="text-accent-2 text-xl uppercase mb-3 font-tropikal font-bold tracking-widest">
+                  {{ skill }}
+                </h4>
+                <p class="text-gray-400 text-sm italic leading-relaxed">
+                  {{
+                    index === 0
+                      ? "Vue 3, Nuxt 4, React, Tailwind, GSAP"
+                      : index === 1
+                        ? "AdonisJS, Laravel, PostgreSQL, MySQL"
+                        : "Linux, Docker, CI/CD, Git, Nginx"
+                  }}
+                </p>
+              </div>
+              <!-- Subtle glow background -->
+              <div class="absolute inset-0 bg-accent-2/0 group-hover:bg-accent-2/5 transition-colors duration-500 rounded-2xl" />
             </div>
           </div>
         </div>

@@ -1,65 +1,60 @@
 <script setup>
-import gsap from "gsap"
+import gsap from "gsap";
 
 const props = defineProps({
   items: {
     type: Array,
     default: () => [
       {
-        title: "Explore The World",
-        image:
-          "https://images.unsplash.com/photo-1558979158-65a1eaa08691?auto=format&fit=crop&w=1350&q=80",
+        title: "Etihad Bank CMS",
+        image: "/images/Etihad.png",
       },
       {
-        title: "Wild Forest",
-        image:
-          "https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?auto=format&fit=crop&w=1350&q=80",
+        title: "Hudhudline Platform",
+        image: "/images/Hudhudline.png",
       },
       {
-        title: "Sunny Beach",
-        image:
-          "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1353&q=80",
+        title: "Dental Store System",
+        image: "/images/DentalStore.png",
       },
       {
-        title: "City on Winter",
-        image:
-          "https://images.unsplash.com/photo-1551009175-8a68da93d5f9?auto=format&fit=crop&w=1351&q=80",
+        title: "Shifa plus app",
+        image: "/images/Shifa.png",
       },
       {
-        title: "Mountains",
-        image:
-          "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1350&q=80",
+        title: "NetMonitor App",
+        image: "/images/NetMonitor.png",
       },
     ],
   },
-})
+});
 
-const activeIndex = ref(0)
-const panelsRef = ref([])
+const activeIndex = ref(0);
+const panelsRef = ref([]);
 
 const setActive = (index) => {
-  if (activeIndex.value === index) return
-  activeIndex.value = index
+  if (activeIndex.value === index) return;
+  activeIndex.value = index;
 
   panelsRef.value.forEach((panel, i) => {
     gsap.to(panel, {
       flex: i === index ? 5 : 0.7,
       duration: 1.5,
       ease: "elastic.out(1, 0.5)",
-    })
-  })
-}
+    });
+  });
+};
 
 const onMouseMove = (e, index) => {
-  if (activeIndex.value !== index) return
+  if (activeIndex.value !== index) return;
 
-  const card = panelsRef.value[index]
-  const rect = card.getBoundingClientRect()
-  const x = e.clientX - rect.left
-  const y = e.clientY - rect.top
+  const card = panelsRef.value[index];
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-  const rotateX = ((y - rect.height / 2) / rect.height) * -10
-  const rotateY = ((x - rect.width / 2) / rect.width) * 10
+  const rotateX = ((y - rect.height / 2) / rect.height) * -10;
+  const rotateY = ((x - rect.width / 2) / rect.width) * 10;
 
   gsap.to(card, {
     rotateX,
@@ -67,8 +62,8 @@ const onMouseMove = (e, index) => {
     duration: 0.5,
     ease: "power2.out",
     transformPerspective: 1000,
-  })
-}
+  });
+};
 
 const onMouseLeave = (index) => {
   gsap.to(panelsRef.value[index], {
@@ -76,20 +71,20 @@ const onMouseLeave = (index) => {
     rotateY: 0,
     duration: 0.8,
     ease: "elastic.out(1, 0.3)",
-  })
-}
+  });
+};
 
-let timer
+let timer;
 onMounted(() => {
-  setActive(0)
+  setActive(0);
 
   timer = setInterval(() => {
-    const next = (activeIndex.value + 1) % props.items.length
-    setActive(next)
-  }, 5000)
-})
+    const next = (activeIndex.value + 1) % props.items.length;
+    setActive(next);
+  }, 5000);
+});
 
-onUnmounted(() => clearInterval(timer))
+onUnmounted(() => clearInterval(timer));
 </script>
 
 <template>

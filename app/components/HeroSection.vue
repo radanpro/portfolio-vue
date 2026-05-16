@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const titleArr = [
-  ["D", "I", "G", "I", "T", "A", "L"],
+  ["S", "Y", "S", "T", "E", "M"],
   ["A", "R", "C", "H", "I", "T", "E", "C", "T"],
-]
+];
 </script>
 <template>
   <section

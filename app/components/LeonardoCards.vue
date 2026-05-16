@@ -1,52 +1,49 @@
 <script setup lang="ts">
-import { useLeonardoAnimation } from "~/composables/useLeonardoAnimation"
-import { ref, onMounted, onUnmounted } from "vue"
+import { useLeonardoAnimation } from "~/composables/useLeonardoAnimation";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const cardsData = [
   {
-    title: "EDITING",
-    desc: "Edit images and video while preserving elements.",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000",
+    title: "BACKEND",
+    desc: "Building scalable APIs and robust server-side systems with Laravel and Django.",
+    image: "/images/Gemini_1.png",
     color: "#22c55e",
     type: "bottom",
   },
   {
-    title: "VIDEO",
-    desc: "Bring visuals into motion with AI-driven tools.",
-    image:
-      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000",
+    title: "FullStack",
+    desc: "Creating modern web platforms with Vue.js, React, and high-performance architectures.",
+    image: "/images/Gemini_2.png",
     color: "#eab308",
     type: "top",
   },
   {
-    title: "CREATION",
-    desc: "Generate high-quality visuals from simple prompts.",
-    image:
-      "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000",
+    title: "DEVOPS",
+    desc: "Managing deployments, hosting environments, and optimized production infrastructures.",
+    image: "/images/Gemini_3.png",
     color: "#3b82f6",
     type: "bottom",
   },
-]
+];
 
 // Initialize the animation
-const { init: initLeonardo } = useLeonardoAnimation(".leo-card-wrapper")
-initLeonardo()
+const { init: initLeonardo } = useLeonardoAnimation(".leo-card-wrapper");
+initLeonardo();
 
-const screenWidth = ref(0)
+const screenWidth = ref(0);
 
 const updateWidth = () => {
-  screenWidth.value = window.innerWidth
-}
+  screenWidth.value = window.innerWidth;
+};
 
 onMounted(() => {
-  updateWidth()
-  window.addEventListener("resize", updateWidth)
-})
+  updateWidth();
+  window.addEventListener("resize", updateWidth);
+});
 
 onUnmounted(() => {
-  window.removeEventListener("resize", updateWidth)
-})
+  window.removeEventListener("resize", updateWidth);
+});
 </script>
 
 <template>

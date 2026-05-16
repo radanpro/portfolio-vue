@@ -4,6 +4,7 @@ import gsap from "gsap";
 
 const containerRef = ref<HTMLElement | null>(null);
 const images = [
+  "/images/barq.png",
   "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300",
   "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=300",
   "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300",
