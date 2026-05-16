@@ -1,23 +1,23 @@
 <script setup lang="ts">
-const sceneRef = ref<HTMLElement | null>(null)
+const sceneRef = ref<HTMLElement | null>(null);
 
 const tunnelContent = {
-  left: ["FRONTEND MASTER".repeat(3), "DEVELOPMENT".repeat(3)],
-  right: ["BACKEND FRONTEND".repeat(3), "EXPERT FRONTEND".repeat(3)],
+  left: ["FULL STACK".repeat(3), "LARAVEL EXPERT".repeat(3)],
+  right: ["PYTHON DJANGO".repeat(3), "VUE REACT DEV".repeat(3)],
   top: [
-    "MODERN INTERFACES ".repeat(2),
-    "GSAP ANIMATIONS ".repeat(2),
-    "NUXT 4 PRO",
+    "MODERN WEB APPS ".repeat(2),
+    "SCALABLE SYSTEMS ".repeat(2),
+    "API ARCHITECT",
   ],
   bottom: [
-    "CLEAN FRONTEND".repeat(2),
-    "CODE FRONTEND".repeat(2),
-    "PERFORMANCE FRONTEND".repeat(2),
+    "CLEAN BACKEND".repeat(2),
+    "FAST PERFORMANCE".repeat(2),
+    "SERVER SOLUTIONS".repeat(2),
   ],
-  back: ["SHEHAB FRONTEND", "RADAN FRONTEND"],
-}
+  back: ["abdulrahman", "RADAN DEV"],
+};
 
-use3DTunnel(sceneRef)
+use3DTunnel(sceneRef);
 </script>
 
 <template>
