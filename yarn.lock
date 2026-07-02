@@ -3708,6 +3708,15 @@ framer-motion@^12.38.0:
     motion-utils "^12.36.0"
     tslib "^2.4.0"
 
+framer-motion@^12.40.0:
+  version "12.42.2"
+  resolved "https://registry.npmmirror.com/framer-motion/-/framer-motion-12.42.2.tgz#8628ad31a9b5c1ea6f908ea1764784e33870b711"
+  integrity sha512-5XY9luDiu0oHfHBjpDthFMh0ES+122w6p/papSJBweMkO8Sn+PW2QaEgRblQBpWFnuvZS5qvarpt/hO2pjGmnw==
+  dependencies:
+    motion-dom "^12.42.2"
+    motion-utils "^12.39.0"
+    tslib "^2.4.0"
+
 fresh@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/fresh/-/fresh-2.0.0.tgz#8dd7df6a1b3a1b3a5cf186c05a5dd267622635a4"
@@ -4376,6 +4385,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+lucide-vue-next@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/lucide-vue-next/-/lucide-vue-next-1.0.0.tgz#663ad26b7bfa327c7662b75bb0b843ebe749a31b"
+  integrity sha512-V6SPvx1IHTj/UY+FrIYWV5faISsPSb8BnWSFDxAtezWKvWc9ZZ40PDrdu1/Qb5vg4lHWr1hs1BAMGVGm6V1Xdg==
+
 magic-regexp@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npmmirror.com/magic-regexp/-/magic-regexp-0.10.0.tgz#78b4421a50d2b7a67129bf2c424a333927c3a0e5"
@@ -4549,10 +4563,22 @@ motion-dom@^12.38.0:
   dependencies:
     motion-utils "^12.36.0"
 
+motion-dom@^12.40.0, motion-dom@^12.42.2:
+  version "12.42.2"
+  resolved "https://registry.npmmirror.com/motion-dom/-/motion-dom-12.42.2.tgz#b4661b9b3394ae7e990d76dc954bc1e321c59305"
+  integrity sha512-5gIMWLp/PycBtJRJWRgjxke5n8dlvkSn2DrYW+tr3XcqAZY1xZh6BJyooJXCM8wdfM7wfMjkBJNLge1CKPUIRA==
+  dependencies:
+    motion-utils "^12.39.0"
+
 motion-utils@^12.36.0:
   version "12.36.0"
   resolved "https://registry.npmmirror.com/motion-utils/-/motion-utils-12.36.0.tgz#cff2df2a28c3fe53a3de7e0103ba7f73ff7d77a7"
   integrity sha512-eHWisygbiwVvf6PZ1vhaHCLamvkSbPIeAYxWUuL3a2PD/TROgE7FvfHWTIH4vMl798QLfMw15nRqIaRDXTlYRg==
+
+motion-utils@^12.39.0:
+  version "12.39.0"
+  resolved "https://registry.npmmirror.com/motion-utils/-/motion-utils-12.39.0.tgz#e1c66f0e912999804bc5e69b4630c3bc794ef29f"
+  integrity sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==
 
 motion-v@^2.2.0:
   version "2.2.0"
@@ -4563,6 +4589,16 @@ motion-v@^2.2.0:
     hey-listen "^1.0.8"
     motion-dom "^12.38.0"
     motion-utils "^12.36.0"
+
+motion-v@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/motion-v/-/motion-v-2.3.0.tgz#a3212c716e4df0ba20f99ee2e208a42a163da16d"
+  integrity sha512-J0CCfXtICCni9RjotDUBOs57xNpYI9yyBSohEOxaRHrmjwOtlw291fhRu/mdgEdSasys96R028YDDOAtWBbRaA==
+  dependencies:
+    framer-motion "^12.40.0"
+    hey-listen "^1.0.8"
+    motion-dom "^12.40.0"
+    motion-utils "^12.39.0"
 
 mrmime@^2.0.0:
   version "2.0.1"

@@ -10,24 +10,8 @@
       <div class="navbar-left">
         <div class="logo">
           <svg width="28" height="28" viewBox="0 0 28 28" class="logo-icon">
-            <rect
-              x="6"
-              y="10"
-              width="12"
-              height="6"
-              rx="2"
-              fill="#000"
-              transform="rotate(-35 12 13)"
-            />
-            <rect
-              x="10"
-              y="10"
-              width="12"
-              height="6"
-              rx="2"
-              fill="#000"
-              transform="rotate(-35 16 13)"
-            />
+            <rect x="6" y="10" width="12" height="6" rx="2" fill="#000" transform="rotate(-35 12 13)" />
+            <rect x="10" y="10" width="12" height="6" rx="2" fill="#000" transform="rotate(-35 16 13)" />
           </svg>
           <span class="brand-text">NeuralKinetics</span>
         </div>
@@ -125,8 +109,8 @@
 </template>
 
 <script setup>
-import { Motion } from "motion-v";
-import { Plus, LayoutGrid } from "lucide-vue-next";
+import { Motion } from 'motion-v'
+import { Plus, LayoutGrid } from 'lucide-vue-next'
 </script>
 
 <style scoped>
@@ -139,7 +123,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .navbar {
@@ -210,7 +194,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   display: none;
   align-items: center;
   gap: 12px;
-  background: #f4f4f6;
+  background: #F4F4F6;
   border-radius: 999px;
   padding: 8px 16px;
   font-size: 12px;
@@ -221,7 +205,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   display: none;
   align-items: center;
   gap: 10px;
-  background: #f4f4f6;
+  background: #F4F4F6;
   border-radius: 999px;
   padding: 4px 16px 4px 4px;
 }
@@ -254,7 +238,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 }
 
 .video-wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   width: 80%;
@@ -274,12 +258,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   z-index: 30;
   width: 100%;
   padding-top: 80px;
-  background: linear-gradient(
-    to top,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
 }
 
 .footer-content {
