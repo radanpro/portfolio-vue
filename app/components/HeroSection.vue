@@ -1,61 +1,6 @@
 <template>
   <section class="hero">
     <Motion
-      tag="nav"
-      class="navbar"
-      :initial="{ y: -16, opacity: 0 }"
-      :animate="{ y: 0, opacity: 1 }"
-      :transition="{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }"
-    >
-      <div class="navbar-left">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 28 28" class="logo-icon">
-            <rect
-              x="6"
-              y="10"
-              width="12"
-              height="6"
-              rx="2"
-              fill="#fff"
-              transform="rotate(-35 12 13)"
-            />
-            <rect
-              x="10"
-              y="10"
-              width="12"
-              height="6"
-              rx="2"
-              fill="#fff"
-              transform="rotate(-35 16 13)"
-            />
-          </svg>
-          <span class="brand-text">NeuralKinetics</span>
-        </div>
-
-        <button class="menu-pill">
-          <span class="menu-circle">
-            <Plus :size="12" :stroke-width="3" color="#fff" />
-          </span>
-          <span class="menu-label">Menu</span>
-        </button>
-
-        <div class="tags-pill">
-          <span>Advanced Bionics</span>
-          <span>Cognitive AI</span>
-        </div>
-      </div>
-
-      <div class="navbar-right">
-        <div class="adaptive-pill">
-          <span class="adaptive-circle">
-            <LayoutGrid :size="14" color="#fff" />
-          </span>
-          <span class="adaptive-label">Adaptive Systems</span>
-        </div>
-      </div>
-    </Motion>
-
-    <Motion
       tag="div"
       class="video-wrapper"
       :initial="{ opacity: 0, scale: 1.05 }"
@@ -89,7 +34,7 @@
             :transition="{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }"
           >
             <span class="dot" />
-            <span>Best digital banking card 2026</span>
+            <span>Full Stack Developer & System Architect</span>
           </Motion>
 
           <Motion
@@ -99,7 +44,7 @@
             :animate="{ y: 0, opacity: 1 }"
             :transition="{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }"
           >
-            One Card, Zero<br />Limits. Worldwide.
+            Crafting High-Performance<br />Web Applications.
           </Motion>
 
           <Motion
@@ -109,15 +54,16 @@
             :animate="{ y: 0, opacity: 1 }"
             :transition="{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }"
           >
-            <button class="btn-primary">See Features</button>
-            <button class="btn-secondary">How It Works</button>
+            <button class="btn-primary" @click="scrollToWork">View Work</button>
+            <a href="mailto:radan1pro@gmail.com" class="btn-secondary">Contact Me</a>
           </Motion>
         </div>
 
         <div class="footer-right">
-          <span class="tag-pill">Neuromorphic</span>
-          <span class="tag-pill">AGI</span>
-          <span class="tag-pill">Cybernetics</span>
+          <span class="tag-pill">Laravel</span>
+          <span class="tag-pill">Python</span>
+          <span class="tag-pill">Vue & React</span>
+          <span class="tag-pill">DevOps</span>
         </div>
       </div>
     </Motion>
@@ -126,7 +72,13 @@
 
 <script setup>
 import { Motion } from "motion-v";
-import { Plus, LayoutGrid } from "lucide-vue-next";
+
+const scrollToWork = () => {
+  const el = document.getElementById("work");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+};
 </script>
 
 <style scoped>
@@ -136,116 +88,11 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   background: transparent;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   position: relative;
   overflow: hidden;
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  pointer-events: none;
-}
-
-.navbar > * {
-  pointer-events: auto;
-}
-
-.navbar-left,
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-text {
-  display: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.menu-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 999px;
-  padding: 4px 12px 4px 4px;
+  border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-}
-
-.menu-circle {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-label {
-  font-size: 11px;
-  color: #fff;
-  font-weight: 400;
-}
-
-.tags-pill {
-  display: none;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.adaptive-pill {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  padding: 4px 16px 4px 4px;
-}
-
-.adaptive-circle {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #ff2a6d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.adaptive-label {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .video-wrapper {
@@ -255,105 +102,145 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   right: 0;
   bottom: 0;
   z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .video-wrapper::after {
   content: "";
   position: absolute;
   inset: 0;
-  width: 80%;
-  height: 80%;
-  margin: auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.3) 0%,
+    transparent 50%,
+    rgba(5, 5, 5, 0.8) 100%
+  );
+  z-index: 1;
 }
 
 .bg-video {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
 }
 
 .footer-wrapper {
   position: relative;
   z-index: 30;
   width: 100%;
-  padding-top: 160px;
+  padding-top: 200px;
   background: linear-gradient(
     to top,
-    rgba(5, 5, 5, 0.7) 0%,
-    rgba(5, 5, 5, 0.15) 70%,
+    rgba(5, 5, 5, 0.85) 0%,
+    rgba(5, 5, 5, 0.2) 70%,
     transparent 100%
   );
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  mask-image: linear-gradient(to top, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%);
 }
 
 .footer-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 16px 32px;
+  padding: 24px 20px 40px;
 }
 
 .footer-left {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .subtitle {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  color: var(--accent-2);
+  
+  font-family: var(--font-body), sans-serif;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  background:  var(--bg-color);
+  border-radius: 999px;
+  padding:2px 5px;
 }
 
 .dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ff2a6d;
+  background: var(--accent-2);
+  box-shadow: 0 0 10px var(--accent-2);
 }
 
 .heading {
   font-weight: 700;
-  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-size: clamp(2rem, 6.5vw, 4.5rem);
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.1;
   color: #fff;
   margin: 0;
-  font-family: "Syne", sans-serif;
+  font-family: var(--font-drizy), sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
 }
 
 .buttons {
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .btn-primary {
-  background: #ff2a6d;
-  color: #fff;
+  background: var(--accent-2);
+  color: #000;
   font-size: 13px;
+  font-weight: 700;
   border: none;
   border-radius: 999px;
-  padding: 12px 24px;
+  padding: 12px 28px;
   cursor: pointer;
-  font-family: inherit;
+  font-family: var(--font-body), sans-serif;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 42, 109, 0.2);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
   color: #fff;
   font-size: 13px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  padding: 12px 24px;
+  padding: 12px 28px;
   cursor: pointer;
-  font-family: inherit;
+  font-family: var(--font-body), sans-serif;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .footer-right {
@@ -363,52 +250,35 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 }
 
 .tag-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #e0e0e0;
+  font-family: var(--font-body), sans-serif;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.tag-pill:hover {
+  border-color: var(--accent-2);
+  color: #fff;
+  background: rgba(5, 217, 232, 0.05);
 }
 
 @media (min-width: 768px) {
-  .navbar {
-    padding: 24px 32px;
-  }
-
-  .brand-text {
-    display: block;
-  }
-
-  .tags-pill {
-    display: flex;
-  }
-
-  .adaptive-pill {
-    display: flex;
-  }
-
-  .menu-circle,
-  .adaptive-circle {
-    width: 32px;
-    height: 32px;
-  }
-
-  .bg-video {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
-
   .footer-content {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 32px;
+    padding: 40px;
   }
 
   .heading {
-    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
   }
 }
 </style>
