@@ -16,7 +16,7 @@
               width="12"
               height="6"
               rx="2"
-              fill="#000"
+              fill="#fff"
               transform="rotate(-35 12 13)"
             />
             <rect
@@ -25,7 +25,7 @@
               width="12"
               height="6"
               rx="2"
-              fill="#000"
+              fill="#fff"
               transform="rotate(-35 16 13)"
             />
           </svg>
@@ -34,7 +34,7 @@
 
         <button class="menu-pill">
           <span class="menu-circle">
-            <Plus :size="12" :stroke-width="3" color="#000" />
+            <Plus :size="12" :stroke-width="3" color="#fff" />
           </span>
           <span class="menu-label">Menu</span>
         </button>
@@ -133,13 +133,12 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 .hero {
   min-height: 100vh;
   width: 100%;
-  background: #ffffff;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-  font-family: "Inter", sans-serif;
 }
 
 .navbar {
@@ -176,17 +175,19 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   display: none;
   font-size: 14px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
 }
 
 .menu-pill {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #000;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 999px;
   padding: 4px 12px 4px 4px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 
@@ -194,7 +195,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -210,18 +211,24 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   display: none;
   align-items: center;
   gap: 12px;
-  background: #f4f4f6;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   padding: 8px 16px;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .adaptive-pill {
   display: none;
   align-items: center;
   gap: 10px;
-  background: #f4f4f6;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   padding: 4px 16px 4px 4px;
 }
@@ -230,7 +237,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #000;
+  background: #ff2a6d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,7 +245,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 
 .adaptive-label {
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .video-wrapper {
@@ -273,13 +280,15 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   position: relative;
   z-index: 30;
   width: 100%;
-  padding-top: 80px;
+  padding-top: 160px;
   background: linear-gradient(
     to top,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.8) 50%,
+    rgba(5, 5, 5, 0.7) 0%,
+    rgba(5, 5, 5, 0.15) 70%,
     transparent 100%
   );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .footer-content {
@@ -300,23 +309,24 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: rgba(0, 0, 0, 0.55);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #000;
+  background: #ff2a6d;
 }
 
 .heading {
-  font-weight: 300;
+  font-weight: 700;
   font-size: clamp(2rem, 8vw, 4.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
-  color: #000;
+  color: #fff;
   margin: 0;
+  font-family: "Syne", sans-serif;
 }
 
 .buttons {
@@ -325,7 +335,7 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 }
 
 .btn-primary {
-  background: #000;
+  background: #ff2a6d;
   color: #fff;
   font-size: 13px;
   border: none;
@@ -337,9 +347,9 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 
 .btn-secondary {
   background: transparent;
-  color: #000;
+  color: #fff;
   font-size: 13px;
-  border: 1px solid rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
   padding: 12px 24px;
   cursor: pointer;
@@ -353,12 +363,12 @@ import { Plus, LayoutGrid } from "lucide-vue-next";
 }
 
 .tag-pill {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 11px;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 @media (min-width: 768px) {
